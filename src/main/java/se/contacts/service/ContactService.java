@@ -13,13 +13,13 @@ import se.contacts.entity.ContactDetails;
  */
 public interface ContactService {
 	
-	public boolean saveContact(ContactDetails contactDetails);
+	public Boolean saveContact(ContactDetails contactDetails);
 	
 	public List<ContactDetails> getContactDetails();
 	
-	public void deleteContact(long contactId);
+	public Boolean deleteContact(long contactId);
 	
-	public ContactDetails updateContactDetails(ContactDetails contactDetails);
+	public Boolean updateContactDetails(ContactDetails contactDetails);
 	
 	public ContactDetails editContactDetails(long contactId);
 	

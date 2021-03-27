@@ -11,7 +11,7 @@ import se.contacts.service.ContactService;
 public class ContactServiceImpl implements ContactService {
 
 	@Override
-	public boolean saveContact(ContactDetails contactDetails) {
+	public Boolean saveContact(ContactDetails contactDetails) {
 
 		return false;
 	}
@@ -23,12 +23,13 @@ public class ContactServiceImpl implements ContactService {
 	}
 
 	@Override
-	public void deleteContact(long contactId) {
+	public Boolean deleteContact(long contactId) {
+		return null;
 
 	}
 
 	@Override
-	public ContactDetails updateContactDetails(ContactDetails contactDetails) {
+	public Boolean updateContactDetails(ContactDetails contactDetails) {
 
 		return null;
 	}

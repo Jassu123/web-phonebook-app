@@ -2,42 +2,62 @@ package se.contacts.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import se.contacts.dto.ContactDetailsDTO;
 import se.contacts.entity.ContactDetails;
+import se.contacts.repository.ContactRepositroy;
 import se.contacts.service.ContactService;
 
 @Service
 public class ContactServiceImpl implements ContactService {
 
-	@Override
-	public Boolean saveContact(ContactDetails contactDetails) {
+	@Autowired
+	private ContactRepositroy contactRepo;
 
-		return false;
+	@Override
+	public String saveContact(ContactDetailsDTO contactDetailsDTO) {
+
+		ContactDetails contactDetails = new ContactDetails();
+		BeanUtils.copyProperties(contactDetailsDTO, contactDetails);
+		if (contactRepo.existsById(contactDetails.getContactID())) {
+			return "Contact already exist";
+		} else {
+			contactRepo.save(contactDetails);
+			return "Contact is added to Database";
+		}
 	}
 
 	@Override
 	public List<ContactDetails> getContactDetails() {
 
-		return null;
+		return contactRepo.findAll();
 	}
 
 	@Override
-	public Boolean deleteContact(long contactId) {
-		return null;
+	public boolean updateContactDetails(ContactDetails contactDetails) {
 
+		if (contactRepo.existsById(contactDetails.getContactID())) {
+			contactRepo.saveAndFlush(contactDetails);
+			return true;
+		}
+
+		else {
+			return false;
+		}
 	}
 
 	@Override
-	public Boolean updateContactDetails(ContactDetails contactDetails) {
+	public boolean deleteContactByID(int contactId) {
+		if (contactRepo.existsById(contactId)) {
+			contactRepo.deleteById(contactId);
+			return true;
+		}
 
-		return null;
-	}
-
-	@Override
-	public ContactDetails editContactDetails(long contactId) {
-
-		return null;
+		else
+			return false;
 	}
 
 }

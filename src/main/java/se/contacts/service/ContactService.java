@@ -5,6 +5,7 @@ package se.contacts.service;
 
 import java.util.List;
 
+import se.contacts.dto.ContactDetailsDTO;
 import se.contacts.entity.ContactDetails;
 
 /**
@@ -13,16 +14,13 @@ import se.contacts.entity.ContactDetails;
  */
 public interface ContactService {
 	
-	public Boolean saveContact(ContactDetails contactDetails);
+	public String saveContact(ContactDetailsDTO contactDetailsDTO);
 	
 	public List<ContactDetails> getContactDetails();
 	
-	public Boolean deleteContact(long contactId);
+	public boolean deleteContactByID(int contactId);
 	
-	public Boolean updateContactDetails(ContactDetails contactDetails);
-	
-	public ContactDetails editContactDetails(long contactId);
-	
+	public boolean updateContactDetails(ContactDetails contactDetails);
 	
 
 }

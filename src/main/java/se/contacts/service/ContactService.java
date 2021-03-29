@@ -16,7 +16,7 @@ public interface ContactService {
 	
 	public String saveContact(ContactDetailsDTO contactDetailsDTO);
 	
-	public List<ContactDetails> getContactDetails();
+	public List<ContactDetailsDTO> getContactDetails();
 	
 	public boolean deleteContactByID(int contactId);
 	

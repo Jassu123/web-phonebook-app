@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import se.contacts.dto.ContactDetailsDTO;
-import se.contacts.entity.ContactDetails;
 import se.contacts.service.ContactService;
 
 /**
@@ -31,8 +30,8 @@ public class ContactDetailsResource {
 		return contactService.saveContact(contactDetails);
 
 	}
-	@GetMapping("contactdetails")
-	public List<ContactDetails> getContactDetails(){
+	@GetMapping("/contactdetails")
+	public List<ContactDetailsDTO> getContactDetails(){
 		return contactService.getContactDetails();
 	}
 

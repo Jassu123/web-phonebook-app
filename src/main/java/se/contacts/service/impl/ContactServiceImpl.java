@@ -1,5 +1,6 @@
 package se.contacts.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
@@ -31,9 +32,17 @@ public class ContactServiceImpl implements ContactService {
 	}
 
 	@Override
-	public List<ContactDetails> getContactDetails() {
-
-		return contactRepo.findAll();
+	public List<ContactDetailsDTO> getContactDetails() {
+						
+		 List<ContactDetails> contactDetails = contactRepo.findAll();
+		 List<ContactDetailsDTO> contactDetailsDTO=new ArrayList<ContactDetailsDTO>();
+		 contactDetails.forEach(contact->{
+			 ContactDetailsDTO cDTO= new ContactDetailsDTO();
+			 BeanUtils.copyProperties(contact, cDTO);
+			 contactDetailsDTO.add(cDTO);
+		 });
+		 
+		return contactDetailsDTO;
 	}
 
 	@Override

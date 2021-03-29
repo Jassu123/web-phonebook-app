@@ -18,7 +18,7 @@ public interface ContactService {
 	
 	public List<ContactDetailsDTO> getContactDetails();
 	
-	public boolean deleteContactByID(int contactId);
+	public String deleteContactByID(int contactId);
 	
 	public boolean updateContactDetails(ContactDetails contactDetails);
 	

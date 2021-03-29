@@ -59,14 +59,14 @@ public class ContactServiceImpl implements ContactService {
 	}
 
 	@Override
-	public boolean deleteContactByID(int contactId) {
+	public String deleteContactByID(int contactId) {
 		if (contactRepo.existsById(contactId)) {
 			contactRepo.deleteById(contactId);
-			return true;
+			return "Contact is deleted from database";
 		}
 
 		else
-			return false;
+			return "This contact is not exists in database";
 	}
 
 }

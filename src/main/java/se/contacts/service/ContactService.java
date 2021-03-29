@@ -20,7 +20,7 @@ public interface ContactService {
 	
 	public String deleteContactByID(int contactId);
 	
-	public boolean updateContactDetails(ContactDetails contactDetails);
+	public String updateContactDetails(ContactDetailsDTO contactDetailsDTO);
 	
 
 }

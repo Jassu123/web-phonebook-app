@@ -33,28 +33,29 @@ public class ContactServiceImpl implements ContactService {
 
 	@Override
 	public List<ContactDetailsDTO> getContactDetails() {
-						
-		 List<ContactDetails> contactDetails = contactRepo.findAll();
-		 List<ContactDetailsDTO> contactDetailsDTO=new ArrayList<ContactDetailsDTO>();
-		 contactDetails.forEach(contact->{
-			 ContactDetailsDTO cDTO= new ContactDetailsDTO();
-			 BeanUtils.copyProperties(contact, cDTO);
-			 contactDetailsDTO.add(cDTO);
-		 });
-		 
+
+		List<ContactDetails> contactDetails = contactRepo.findAll();
+		List<ContactDetailsDTO> contactDetailsDTO = new ArrayList<ContactDetailsDTO>();
+		contactDetails.forEach(contact -> {
+			ContactDetailsDTO cDTO = new ContactDetailsDTO();
+			BeanUtils.copyProperties(contact, cDTO);
+			contactDetailsDTO.add(cDTO);
+		});
+
 		return contactDetailsDTO;
 	}
 
 	@Override
-	public boolean updateContactDetails(ContactDetails contactDetails) {
-
-		if (contactRepo.existsById(contactDetails.getContactID())) {
-			contactRepo.saveAndFlush(contactDetails);
-			return true;
+	public String updateContactDetails(ContactDetailsDTO contactDetailsDTO) {
+		ContactDetails cDetails = new ContactDetails();
+		BeanUtils.copyProperties(contactDetailsDTO, cDetails);
+		if (contactRepo.existsById(cDetails.getContactID())) {
+			contactRepo.saveAndFlush(cDetails);
+			return "Contact is updated in Database";
 		}
 
 		else {
-			return false;
+			return "Contact does not exists";
 		}
 	}
 
